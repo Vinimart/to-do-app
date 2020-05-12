@@ -1,3 +1,5 @@
+/* Global Variables */
+
 const clear = document.querySelector(".refresh-btn");
 const dateElement = document.getElementById("date");
 const toDoList = document.querySelector(".app-list");
@@ -11,29 +13,38 @@ const check = "fa-check-circle";
 const uncheck = "fa-circle";
 const lined = "lined";
 
+
+
+
+
 // LocalStorage
 
 let data = localStorage.getItem("toDo");
 
-function loadToDo(array) {
-    array.forEach((item) => {
-        addToDo(item.name, item.id, item.done, item.trash);
-    });
-}
-
 if (data) {
     list = JSON.parse(data);
-    loadToDo(list);
+    loadList(list);
     id = list.length;
 } else {
     list = [];
     id = 0;
 }
 
+function loadList(array) {
+    array.forEach((item) => {
+        addToDo(item.name, item.id, item.done, item.trash);
+    });
+}
+
 clear.addEventListener("click", function () {
     localStorage.clear();
     location.reload();
 });
+
+
+
+
+
 
 // Todo Template
 
@@ -65,6 +76,11 @@ function addToDo(toDo, id, done, trash) {
 
     return toDoList.insertAdjacentHTML(position, this.toDoComponent);
 }
+
+
+
+
+
 
 // Add Remove Todo
 
@@ -109,6 +125,11 @@ input.addEventListener("keyup", (event) => {
     }
 });
 
+
+
+
+
+
 // Add Remove Class
 
 function completeToDo(element) {
@@ -149,6 +170,11 @@ toDoList.addEventListener("click", function (event) {
 
     localStorage.setItem("toDo", JSON.stringify(list));
 });
+
+
+
+
+
 
 // Date
 
