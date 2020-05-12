@@ -26,12 +26,8 @@
 
             <div class="color-1st font-4x">
 
-                <span>
-                    Segunda,
-                </span>
-
-                <span>
-                    11 de Maio
+                <span id="date">
+                    Segunda, 11 de Maio
                 </span>
 
             </div>
@@ -45,11 +41,8 @@
             <div class="to-do-container">
 
                 <div class="font-2x">
-                    <div class="round">
-                        <input type="checkbox" id="checkbox" />
-                        <label for="checkbox"></label>
-                    </div>
-                    <span>Fazer Exercícios</span>
+                    <input type="checkbox" name="checkbox" id="checkbox0">
+                    <label>Fazer Exercícios</label>
                 </div>
 
                 <div>
@@ -64,17 +57,19 @@
         <section class="app-add-section">
 
             <div>
-                <i class="fas fa-plus-circle fa-2x color-3rd"></i>
+                <i id="idAddBtn" class="fas fa-plus-circle fa-2x color-3rd"></i>
             </div>
 
             <div>
-                <span class="color-3rd font-3x">Novo To-do</span>
+                <input type="text" name="AddInput" id="idAddInput" maxlength="28" placeholder="Add um To-do">
             </div>
 
         </section>
         <!-- end: add section -->
 
     </main>
+
+    <script src="src/js/script.js"></script>
 </body>
 
 </html>
