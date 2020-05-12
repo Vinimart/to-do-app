@@ -45,7 +45,7 @@ main {
 }
 
 .app-add-section i {
-    
+
     cursor: pointer;
 }
 
@@ -73,13 +73,26 @@ main {
     border-bottom: 1px solid #ececec;
 }
 
-.to-do-container label {
+.to-do-title {
     margin-left: 0.5em;
 }
 
 .to-do-container i:hover {
     cursor: pointer;
-    color: rgb(235, 67, 67);
+}
+
+.fa-trash-alt:hover {
+    color: #eb4343;
+}
+
+.fa-check-circle,
+.fa-circle:hover {
+    color: yellowgreen;
+}
+
+.lined {
+    text-decoration: line-through;
+    color: #cccccc;
 }
 
 /* Colors */
@@ -93,7 +106,7 @@ main {
 }
 
 .color-3rd {
-    color: rgb(233, 106, 106);
+    color: rgb(102, 98, 160);
 }
 
 .color-4th {
