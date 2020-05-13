@@ -13,10 +13,6 @@ const check = "fa-check-circle";
 const uncheck = "fa-circle";
 const lined = "lined";
 
-
-
-
-
 // LocalStorage
 
 let data = localStorage.getItem("toDo");
@@ -41,11 +37,6 @@ clear.addEventListener("click", function () {
     location.reload();
 });
 
-
-
-
-
-
 // Todo Template
 
 function addToDo(toDo, id, done, trash) {
@@ -62,12 +53,12 @@ function addToDo(toDo, id, done, trash) {
   <div class="to-do-container">
 
   <div class="font-2x">
-      <i id="${this.id}" class="far ${this.done}" job="complete"></i>
+      <i id="${this.id}" class="far ${this.done} font-3x" job="complete"></i>
       <span class="to-do-title ${this.lined}">${this.toDo}</span>
   </div>
 
   <div>
-      <i id="trash${this.id}" class="fas fa-trash-alt" job="delete"></i>
+      <i id="trash${this.id}" class="fas fa-trash-alt font-3x" job="delete"></i>
   </div>
 </div>
 `;
@@ -76,11 +67,6 @@ function addToDo(toDo, id, done, trash) {
 
     return toDoList.insertAdjacentHTML(position, this.toDoComponent);
 }
-
-
-
-
-
 
 // Add Remove Todo
 
@@ -125,11 +111,6 @@ input.addEventListener("keyup", (event) => {
     }
 });
 
-
-
-
-
-
 // Add Remove Class
 
 function completeToDo(element) {
@@ -153,9 +134,16 @@ function removeToDo(element) {
     this.id = this.id.replace("trash", "");
     list[this.id].trash = true;
 
-    this.element.parentNode.parentNode.parentNode.removeChild(
-        this.element.parentNode.parentNode
-    );
+    this.container = this.element.parentNode.parentNode;
+
+    this.element.classList.add("color-5th")
+    this.container.classList.add("fade-out-left")
+
+    window.setTimeout(() => {
+        this.container.parentNode.removeChild(
+            this.container
+        );
+    }, 400)
 }
 
 toDoList.addEventListener("click", function (event) {
@@ -170,11 +158,6 @@ toDoList.addEventListener("click", function (event) {
 
     localStorage.setItem("toDo", JSON.stringify(list));
 });
-
-
-
-
-
 
 // Date
 

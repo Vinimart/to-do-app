@@ -11,7 +11,6 @@ body {
 
 main {
     width: 20em;
-    height: 36em;
     margin: 2em 0;
     border-radius: 1em;
     background-color: white;
@@ -30,7 +29,8 @@ main {
 
 .app-list {
     background-color: #FFFFFF;
-    height: 23em;
+    min-height: 15em;
+    max-height: 20em;
     overflow-y: auto;
 }
 
@@ -44,8 +44,8 @@ main {
     border-radius: 0 0 1em 1em;
 }
 
-.app-add-section i {
-
+.app-add-section i:hover {
+    animation: jello-horizontal 0.9s both;
     cursor: pointer;
 }
 
@@ -65,12 +65,17 @@ main {
     cursor: pointer;
 }
 
+.refresh-btn:hover {
+    animation: rotate-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 .to-do-container {
     display: flex;
     justify-content: space-between;
     align-content: center;
     padding: 1.5em 1em;
     border-bottom: 1px solid #ececec;
+    transition: 0.6s;
 }
 
 .to-do-title {
@@ -82,12 +87,17 @@ main {
 }
 
 .fa-trash-alt:hover {
-    color: #eb4343;
+    animation: jello-horizontal 0.9s both;
+}
+
+.fa-check-circle {
+    color: yellowgreen;
 }
 
 .fa-check-circle,
-.fa-circle:hover {
-    color: yellowgreen;
+.fa-circle {
+    position: relative;
+    top: 2px;
 }
 
 .lined {
@@ -113,6 +123,10 @@ main {
     color: #cccccc;
 }
 
+.color-5th {
+    color: #eb4343;
+}
+
 /* Font */
 
 .font-1x {
@@ -130,3 +144,61 @@ main {
 .font-4x {
     font-size: 24px;
 }
+
+/* Animations */
+
+.fade-out-left {
+	animation: fade-out-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes jello-horizontal {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes rotate-in-center {
+    0% {
+      transform: rotate(-180deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotate(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out-left {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+  }
