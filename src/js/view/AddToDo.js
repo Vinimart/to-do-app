@@ -1,16 +1,14 @@
 class AddToDo {
-
     constructor() {
-        const toDoClass = new ToDo
-        this.toDoList = toDoClass.toDoList
+        const toDoClass = new ToDo();
+        this.toDoList = toDoClass.toDoList;
 
-        this.check = "fa-check-circle"
-        this.uncheck = "fa-circle"
-        this.lined = "lined"
+        this.check = "fa-check-circle";
+        this.uncheck = "fa-circle";
+        this.lined = "lined";
     }
 
     template(name, id, done, lined) {
-
         return `
         <div class="to-do-container">
 
@@ -23,36 +21,31 @@ class AddToDo {
             <i id="trash${id}" class="fas fa-trash-alt font-3x" job="delete"></i>
         </div>
         </div>
-        `
+        `;
     }
 
     isTrash() {
-
-        if (this.trash) return
+        if (this.trash) return;
     }
 
     completeToDo(done) {
-
         this.done = done ? this.check : this.uncheck;
-        this._lined = done ? this.lined : ""
+        this._lined = done ? this.lined : "";
     }
 
     insertComponent(name, id, done, trash) {
-
-        this.name = name
+        this.name = name;
         this.id = id;
-        this.done = done
-        this.trash = trash
-        this.position = "beforeend"
+        this.done = done;
+        this.trash = trash;
+        this.position = "beforeend";
 
-        this.isTrash()
-        this.completeToDo(done)
+        this.isTrash();
+        this.completeToDo(done);
 
-        return this.toDoList.insertAdjacentHTML(this.position, this.template(
-            this.name,
-            this.id,
-            this.done,
-            this._lined
-        ));
+        return this.toDoList.insertAdjacentHTML(
+            this.position,
+            this.template(this.name, this.id, this.done, this._lined)
+        );
     }
 }
