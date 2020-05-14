@@ -10,8 +10,12 @@ class ToDoGetter {
         this.id = toDo.id;
         this.list = toDo.list;
         this.toDoListView = toDo.toDoList;
+        this.clear = toDo.clear;
+
+        this.data = localStorage.getItem("toDo");
 
         this.observe();
+        this.storage();
         date.render(toDo.dateElement);
     }
 
@@ -33,10 +37,8 @@ class ToDoGetter {
             return;
         }
 
-        // Limpa o input
+        localStorage.setItem("toDo", JSON.stringify(this.list));
         this.name.value = "";
-
-        // ID é incrementado sempre que é criado uma nova instância do componente to-do
         this.id++;
     }
 
@@ -97,6 +99,33 @@ class ToDoGetter {
             } else if (this.elementJob === "delete") {
                 this.removeToDo();
             }
+
+            localStorage.setItem("toDo", JSON.stringify(this.list));
+        });
+
+        // Limpa o localStorage e recarrega a página
+        this.clear.addEventListener("click", () => {
+            localStorage.clear();
+            location.reload();
+        });
+    }
+
+    storage() {
+        // Se houver dados armazenados no localStorage (this.data) chama o método loadList
+        if (this.data) {
+            this.list = JSON.parse(this.data);
+            this.loadList(this.list);
+            this.id = this.list.length;
+        } else {
+            this.list = [];
+            this.id = 0;
+        }
+    }
+
+    loadList(array) {
+        // Passa para o construtor do componente as propriedades dos to-dos já existentes no localStorage
+        array.forEach((item) => {
+            this.addToDo.insertComponent(item.name, item.id, item.done, item.trash);
         });
     }
 }

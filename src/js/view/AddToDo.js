@@ -26,11 +26,6 @@ class AddToDo {
         `;
     }
 
-    isTrash() {
-        // O localStorage usa essa informação para não restaurar to-dos excluídos
-        if (this.trash) return;
-    }
-
     completeToDo(done) {
         // Atribui a classe css correta dependendo do valor boolean do parâmetro done
         this.done = done ? this.check : this.uncheck;
@@ -46,7 +41,9 @@ class AddToDo {
         this.trash = trash;
         this.position = "beforeend";
 
-        this.isTrash();
+        // O localStorage usa essa propriedade para não restaurar to-dos excluídos
+        if (this.trash) return;
+
         this.completeToDo(done);
 
         // Renderiza o componente abaixo do último componente da lista.
