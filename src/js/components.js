@@ -78,6 +78,7 @@ class ToDoGetter {
     constructor() {
 
         const toDo = new ToDo()
+        const date = new HeaderDate()
         this.addToDo = new AddToDo()
 
         this.addBtn = toDo.addBtn
@@ -87,6 +88,7 @@ class ToDoGetter {
         this.toDoListView = toDo.toDoList
 
         this.observe()
+        date.render(toDo.dateElement)
     }
 
     add() {
@@ -105,6 +107,7 @@ class ToDoGetter {
         } else {
 
             alert("Preencha o campo Add um To-do");
+            return
         }
 
         this.name.value = ''
@@ -172,5 +175,36 @@ class ToDoGetter {
                 this.removeToDo()
             }
         })
+    }
+}
+
+class HeaderDate {
+
+    constructor() {
+
+        this.date = new Date()
+        
+        this.options = {
+            weekday: "long",
+            month: "short",
+            day: "numeric",
+        }
+    }
+
+    convertDate() {
+
+       this.date = this.date.toLocaleDateString("pt-BR", this.options);
+    }
+
+    upperCase() {
+
+        this.convertDate()
+        this.date = this.date.charAt(0).toUpperCase() + this.date.slice(1);
+    }
+
+    render(element) {
+
+        this.upperCase()
+        element.innerHTML = this.date;
     }
 }
