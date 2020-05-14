@@ -148,7 +148,7 @@ main {
 /* Animations */
 
 .fade-out-left {
-	animation: fade-out-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: fade-out-left 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 @keyframes jello-horizontal {
@@ -183,22 +183,24 @@ main {
 
 @keyframes rotate-in-center {
     0% {
-      transform: rotate(-180deg);
-      opacity: 0;
+        transform: rotate(-180deg);
+        opacity: 0;
     }
-    100% {
-      transform: rotate(0);
-      opacity: 1;
-    }
-  }
 
-  @keyframes fade-out-left {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
     100% {
-      transform: translateX(-50px);
-      opacity: 0;
+        transform: rotate(0);
+        opacity: 1;
     }
-  }
+}
+
+@keyframes fade-out-left {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+}
