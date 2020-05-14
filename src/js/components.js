@@ -8,9 +8,9 @@ class ToDo {
         this.toDoList = $(".app-list")
         this.addBtn = $("#idAddBtn")
         this.input = $("#idAddInput")
-        
-        this.list
-        this.id
+
+        this.list = []
+        this.id = 0
     }
 }
 
@@ -50,7 +50,7 @@ class AddToDo {
     completeToDo(done) {
 
         this.done = done ? this.check : this.uncheck;
-        this.lined = done ? this.lined : ""
+        this._lined = done ? this.lined : ""
     }
 
     insertComponent(name, id, done, trash) {
@@ -68,7 +68,7 @@ class AddToDo {
             this.name,
             this.id,
             this.done,
-            this.lined
+            this._lined
         ));
     }
 }
@@ -76,33 +76,73 @@ class AddToDo {
 class ToDoGetter {
 
     constructor() {
+
         const toDo = new ToDo()
-    
+        this.addToDo = new AddToDo()
+
         this.addBtn = toDo.addBtn
         this.name = toDo.input
         this.id = toDo.id
         this.list = toDo.list
+        this.toDoListView = toDo.toDoList
 
         this.observe()
     }
 
     add() {
-        const addToDo = new AddToDo()
+
 
         if (this.name.value) {
 
-            addToDo.insertComponent(this.name.value, this.id, false, false)
-            //addToDo.insertComponent()
+            this.addToDo.insertComponent(this.name.value, this.id, false, false)
 
-            /*this.list.push({
+            this.list.push({
                 name: this.name.value,
                 id: this.id,
                 done: false,
                 trash: false
-            })*/
+            })
         } else {
+
             alert("Preencha o campo Add um To-do");
         }
+
+        this.name.value = ''
+        this.id++
+    }
+
+    completeToDo() {
+
+        this.element.classList.toggle(this.addToDo.check);
+        this.element.classList.toggle(this.addToDo.uncheck);
+
+        if (this.element.classList.contains(this.addToDo.check)) {
+
+            this.list[this.element.id].done = true;
+        } else {
+
+            this.list[this.element.id].done = false;
+        }
+
+        this.element.parentNode.querySelector(".to-do-title").classList.toggle(this.addToDo.lined);
+    }
+
+    removeToDo() {
+
+        this.trashId = this.element.id;
+        this.trashId = this.trashId.replace("trash", "");
+        this.list[this.trashId].trash = true;
+
+        this.container = this.element.parentNode.parentNode;
+
+        this.element.classList.add("color-5th")
+        this.container.classList.add("fade-out-left")
+
+        window.setTimeout(() => {
+            this.container.parentNode.removeChild(
+                this.container
+            );
+        }, 400)
     }
 
     observe() {
@@ -115,8 +155,22 @@ class ToDoGetter {
         })
 
         this.addBtn.addEventListener('click', () => {
+
             this.add()
+        })
+
+        this.toDoListView.addEventListener('click', (event) => {
+
+            this.element = event.target
+            this.elementJob = this.element.attributes.job.value;
+
+            if (this.elementJob === "complete") {
+
+                this.completeToDo()
+            } else if (this.elementJob === "delete") {
+
+                this.removeToDo()
+            }
         })
     }
 }
-
