@@ -21,7 +21,6 @@ class ToDoGetter {
 
     add() {
         // Passa os parâmetros padrões para o construtor do componente de to-do
-
         if (this.name.value) {
             this.addToDo.insertComponent(this.name.value, this.id, false, false);
 
