@@ -115,7 +115,7 @@ main {
 }
 
 .hide {
-    display: none;
+    visibility: hidden;
 }
 
 /* Colors */

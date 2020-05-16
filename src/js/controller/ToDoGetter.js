@@ -11,7 +11,7 @@ class ToDoGetter {
         this.list = toDo.list;
         this.toDoListView = toDo.toDoList;
         this.clear = toDo.clear;
-        this.undo = toDo.undo
+        this.undo = toDo.undo;
 
         this.data = localStorage.getItem("toDo");
 
@@ -37,9 +37,10 @@ class ToDoGetter {
             return;
         }
 
-        localStorage.setItem("toDo", JSON.stringify(this.list));
         this.name.value = "";
         this.id++;
+
+        localStorage.setItem("toDo", JSON.stringify(this.list));
     }
 
     completeToDo() {
@@ -56,6 +57,8 @@ class ToDoGetter {
         } else {
             this.list[this.element.id].done = false;
         }
+
+        localStorage.setItem("toDo", JSON.stringify(this.list));
     }
 
     removeToDo() {
@@ -69,26 +72,28 @@ class ToDoGetter {
         // Altera as classes CSS da instância do componente to-do
         this.element.classList.add("color-5th");
         this.container.classList.add("fade-out-left");
-        this.undo.classList.remove('hide')
+        this.undo.classList.remove("hide");
 
         // Remove o componente to-do logo após o fim da animação 'fade-out-left'
         window.setTimeout(() => {
             this.container.parentNode.removeChild(this.container);
         }, 400);
+
+        localStorage.setItem("toDo", JSON.stringify(this.list));
     }
 
     restoreToDo() {
-        // Função undo, restaura o último to-do à ser excluido
+        // Função undo, restaura o último to-do excluido
         this.trashList = this.list.filter((e) => {
-            return e.trash === true
-        })
+            return e.trash === true;
+        });
 
-        this.trashListLastId = this.trashList.length - 1
-        this.lastTrash = this.trashList[this.trashListLastId]
+        this.trashListLastId = this.trashList.length - 1;
+        this.lastTrash = this.trashList[this.trashListLastId];
 
-        this.list[this.lastTrash.id].trash = false
+        this.list[this.lastTrash.id].trash = false;
 
-        this.undo.classList.add('hide')
+        this.undo.classList.add("hide");
 
         localStorage.setItem("toDo", JSON.stringify(this.list));
         location.reload();
@@ -117,8 +122,6 @@ class ToDoGetter {
             } else if (this.elementJob === "delete") {
                 this.removeToDo();
             }
-
-            localStorage.setItem("toDo", JSON.stringify(this.list));
         });
 
         // Limpa o localStorage e recarrega a página
@@ -128,9 +131,9 @@ class ToDoGetter {
         });
 
         // Restaura o último to-do excluído
-        this.undo.addEventListener('click', () => {
-            this.restoreToDo()
-        })
+        this.undo.addEventListener("click", () => {
+            this.restoreToDo();
+        });
     }
 
     storage() {
