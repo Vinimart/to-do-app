@@ -9,6 +9,7 @@ class ToDo {
         this.toDoList = $(".app-list");
         this.addBtn = $("#idAddBtn");
         this.input = $("#idAddInput");
+        this.undo = $('#undo')
 
         this.list = [];
         this.id = 0;
