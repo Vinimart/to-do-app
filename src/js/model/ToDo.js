@@ -1,17 +1,18 @@
+// eslint-disable-next-line no-unused-vars
 class ToDo {
-    constructor() {
-        // Class model que referencia a DOM da página principal do to-do app
-        // A partir dessa classe é possível manipular os principais componentes visuais da aplicação
-        const $ = document.querySelector.bind(document);
+  constructor() {
+    // Class model que referencia a DOM da página principal do to-do app
+    // A partir dessa classe é possível manipular os principais componentes visuais da aplicação
+    const $ = document.querySelector.bind(document);
 
-        this.clear = $(".refresh-btn");
-        this.dateElement = $("#date");
-        this.toDoList = $(".app-list");
-        this.addBtn = $("#idAddBtn");
-        this.input = $("#idAddInput");
-        this.undo = $('#undo')
+    this.clear = $('.refresh-btn');
+    this.dateElement = $('#date');
+    this.toDoList = $('.app-list');
+    this.addBtn = $('#idAddBtn');
+    this.input = $('#idAddInput');
+    this.undo = $('#undo');
 
-        this.list = [];
-        this.id = 0;
-    }
+    this.list = [];
+    this.id = 0;
+  }
 }
