@@ -1,2 +1,3 @@
 # to-do-app
-This is a simple study of case of a To-do list application using vanilla javascript.
+This is a case study for a task list application. 
+For this project, the object-oriented programming paradigm  was used combined with the MVC design pattern.
